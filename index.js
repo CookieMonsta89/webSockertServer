@@ -4,11 +4,21 @@ const webSocketServer = require("websocket").server;
 
 const http = require("http");
 
+let handleRequest = (req, res) => {
+    res.writeHead(200, {
+        'Content-Type': 'text/plain'
+    })
+    res.write('Hi There')
+    Response.end();
+}
+
 // Spinning the http server and the websocket server
 
-const server = http.createServer();
+const server = http.createServer(handleRequest);
 
 server.listen(webSocketsServerPort);
+
+console.log("listening on port 8000");
 
 const wsServer = new webSocketServer({
 	httpServer: server,
